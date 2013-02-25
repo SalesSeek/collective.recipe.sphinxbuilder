@@ -10,7 +10,7 @@ import zc.buildout
 import zc.recipe.egg
 from datetime import datetime
 from fnmatch import fnmatch
-
+from cStringIO import StringIO
 
 log = logging.getLogger(__name__)
 
@@ -67,8 +67,8 @@ class Recipe(object):
                         extra_paths.append(filename)
             sys.path.extend(extra_paths)
 
-        from sphinx.quickstart import MAKEFILE
-        from sphinx.quickstart import BATCHFILE
+        from utils import MAKEFILE
+        from utils import BATCHFILE
         from sphinx.util import make_filename
 
         # and cleanup again
@@ -144,6 +144,21 @@ class Recipe(object):
                  ('sphinx-autogen', 'sphinx.ext.autosummary.generate', 'main')], ws,
                 self.buildout[self.buildout['buildout']['python']]['executable'],
                 self.bin_dir, **egg_options)
+
+        # patch sphinx-build script
+        # change last line from sphinx.main() to sys.exit(sphinx.main())
+        # so that errors are correctly reported to Travis CI.        
+        sb = os.path.join(self.bin_dir, 'sphinx-build')
+        temp_file = StringIO()
+        sb_file = open(sb,'r')
+        for line in sb_file:
+            temp_file.write(line.replace('sphinx.main()', 'sys.exit(sphinx.main())'))
+        # open for writing (delete contents existing contents before rewritng 
+        # from StringIO that contains the modification
+        sb_file = open(sb,'w')
+        sb_file.write(temp_file.getvalue())
+        temp_file.close()
+        sb_file.close()
 
         return [self.script_path, self.makefile_path, self.batchfile_path]
 

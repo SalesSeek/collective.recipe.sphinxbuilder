@@ -24,6 +24,8 @@ Let's run the buildout::
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
     Generated script '/sample-buildout/bin/sphinx-quickstart'.
     Generated script '/sample-buildout/bin/sphinx-build'.
+    Generated script '/sample-buildout/bin/sphinx-apidoc'.
+    Generated script '/sample-buildout/bin/sphinx-autogen'.
     <BLANKLINE>
 
 What are we expecting?
@@ -40,6 +42,8 @@ A script in the `bin` folder to build the docs::
     >>> bin = join(sample_buildout, 'bin')
     >>> ls(bin)
     - buildout
+    - sphinx-apidoc
+    - sphinx-autogen
     - sphinx-build
     - sphinx-quickstart
     - sphinxbuilder
@@ -75,6 +79,7 @@ If we want `latex`, we need to explicitly define it::
     collective.recipe.sphinxbuilder: writing MAKEFILE..
     collective.recipe.sphinxbuilder: writing BATCHFILE..
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
+    Generated script '/sample-buildout/bin/sphinx-build'.
     <BLANKLINE>
 
 Let's see our script now::
@@ -118,6 +123,7 @@ If we want `pdf`, we need to explicitly define it::
     collective.recipe.sphinxbuilder: writing MAKEFILE..
     collective.recipe.sphinxbuilder: writing BATCHFILE..
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
+    Generated script '/sample-buildout/bin/sphinx-build'.
     <BLANKLINE>
 
 Let's see our script now::
@@ -151,6 +157,7 @@ If we want `epub`, like pdf we need to explicitly define it::
     collective.recipe.sphinxbuilder: writing MAKEFILE..
     collective.recipe.sphinxbuilder: writing BATCHFILE..
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
+    Generated script '/sample-buildout/bin/sphinx-build'.
     <BLANKLINE>
 
 Let's see our script now::
@@ -180,6 +187,7 @@ We can also have the script run any doctests in the docs while building::
     collective.recipe.sphinxbuilder: writing MAKEFILE..
     collective.recipe.sphinxbuilder: writing BATCHFILE..
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
+    Generated script '/sample-buildout/bin/sphinx-build'.
     <BLANKLINE>
 
 Let's see our script now::
@@ -212,6 +220,5 @@ wildcards (see `fnmatch` module) ::
     collective.recipe.sphinxbuilder: writing BATCHFILE..
     collective.recipe.sphinxbuilder: writing custom sphinx-builder script..
     collective.recipe.sphinxbuilder: inserting extra-paths..
-    Generated script '/sample-buildout/bin/sphinx-quickstart'.
     Generated script '/sample-buildout/bin/sphinx-build'.
     <BLANKLINE>
