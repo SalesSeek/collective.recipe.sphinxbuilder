@@ -9,3 +9,5 @@ Contributors
  * Domen Kozar
  * Tres Seaver
  * Sébastien Douche, maintainer
+ * Pedro Romano
+ * Richard Mitchell

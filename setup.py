@@ -60,10 +60,12 @@ setup(name='collective.recipe.sphinxbuilder',
             'zc.recipe.egg',
             'docutils',
             'Sphinx>=1.1'],
-      tests_require=['zope.testing', 'zc.buildout'],
-      extras_require=dict(tests=['zope.testing', 'zc.buildout']),
+      tests_require=['zope.testing', 'zc.buildout[test]'],
+      extras_require=dict(tests=['zope.testing', 'zc.buildout[test]']),
       test_suite = 'collective.recipe.sphinxbuilder.tests.test_docs.test_suite',
-      entry_points = {"zc.buildout": ["default = collective.recipe.sphinxbuilder:Recipe"]}
+      entry_points = {"zc.buildout": ["default = collective.recipe.sphinxbuilder:Recipe"]},
+      use_2to3=True,
+      convert_2to3_doctests = ['src/collective/recipe/sphinxbuilder/docs/usage.rst'],
       )
 
 # python setup.py --long-description | rst2html.py > /dev/null
