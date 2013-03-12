@@ -67,8 +67,8 @@ class Recipe(object):
                         extra_paths.append(filename)
             sys.path.extend(extra_paths)
 
-        from utils import MAKEFILE
-        from utils import BATCHFILE
+        from collective.recipe.sphinxbuilder.utils import MAKEFILE
+        from collective.recipe.sphinxbuilder.utils import BATCHFILE
         from sphinx.util import make_filename
 
         # and cleanup again
